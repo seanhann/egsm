@@ -46,12 +46,6 @@ return [
 
 	'connections' => [
 
-		'sqlite' => [
-			'driver'   => 'sqlite',
-			'database' => storage_path().'/database.sqlite',
-			'prefix'   => '',
-		],
-
 		'mysql' => [
 			'driver'    => 'mysql',
 			'host'      => env('DB_HOST', 'localhost'),
@@ -64,26 +58,29 @@ return [
 			'strict'    => false,
 		],
 
-		'pgsql' => [
-			'driver'   => 'pgsql',
-			'host'     => env('DB_HOST', 'localhost'),
-			'database' => env('DB_DATABASE', 'forge'),
-			'username' => env('DB_USERNAME', 'forge'),
-			'password' => env('DB_PASSWORD', ''),
-			'charset'  => 'utf8',
-			'prefix'   => '',
-			'schema'   => 'public',
+		'egsm' => [
+			'driver'    => 'mysql',
+			'host'      => env('EG_HOST', 'localhost'),
+			'database'  => env('EG_DATABASE', 'forge'),
+			'username'  => env('EG_USERNAME', 'forge'),
+			'password'  => env('EG_PASSWORD', ''),
+			'charset'   => 'utf8',
+			'collation' => 'utf8_general_ci',
+			'prefix'    => '',
+			'strict'    => false,
 		],
 
-		'sqlsrv' => [
-			'driver'   => 'sqlsrv',
-			'host'     => env('DB_HOST', 'localhost'),
-			'database' => env('DB_DATABASE', 'forge'),
-			'username' => env('DB_USERNAME', 'forge'),
-			'password' => env('DB_PASSWORD', ''),
-			'prefix'   => '',
+		'egsm_remote' => [
+			'driver'    => 'mysql',
+			'host'      => env('EG_REMOTE_HOST', 'localhost'),
+			'database'  => env('EG_REMOTE_DATABASE', 'forge'),
+			'username'  => env('EG_REMOTE_USERNAME', 'forge'),
+			'password'  => env('EG_REMOTE_PASSWORD', ''),
+			'charset'   => 'utf8',
+			'collation' => 'utf8_general_ci',
+			'prefix'    => '',
+			'strict'    => false,
 		],
-
 	],
 
 	/*

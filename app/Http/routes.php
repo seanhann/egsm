@@ -11,9 +11,24 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
-
-Route::get('home', 'HomeController@index');
+Route::get('token', 'YgController@token');
+Route::get('captcha', 'YgController@captcha');
+Route::get('/', 'YgController@index');
+Route::get('near', 'YgController@near');
+Route::get('staff', 'YgController@staff');
+Route::get('detail/{id?}', 'YgController@detail');
+Route::get('search/{keywords?}', 'YgController@search');
+Route::get('content', 'YgController@content');
+Route::post('login', 'YgController@login');
+Route::post('regist', 'YgController@regist');
+Route::get('user', 'YgController@user');
+Route::get('points', 'YgController@points');
+Route::get('info', 'YgController@info');
+Route::post('info', 'YgController@postInfo');
+Route::get('comments', 'YgController@comments');
+Route::get('favorites', 'YgController@favorites');
+Route::post('favorite', 'YgController@postFavorite');
+Route::get('about', 'YgController@about');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
