@@ -27,7 +27,7 @@ class YgController extends Controller {
 	{
 		$this->middleware('auth.egsm',['only'=>'user']);
 		$this->middleware('nocache',['only'=>'captcha']);
-		$this->middleware('captcha',['only'=>'login']);
+		$this->middleware('captcha',['only'=>'login', 'regist']);
 	}
 
 	/**
