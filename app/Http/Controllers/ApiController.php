@@ -42,7 +42,7 @@ class ApiController extends Controller {
 			return response()->json(['code' => 0, 'msg'=>'非法输入']);
 		}
 
-		$models = \Models\egsm\Favorite::where('aid', $request->input('aid'))->get();
+		$models = \Models\Favorite::where('aid', $request->input('aid'))->get();
 		if( count($models) > 0 ){
 			foreach($models as $model){
 				if( !$model->delete() ){
@@ -51,7 +51,7 @@ class ApiController extends Controller {
 			}
 			return response()->json(['code' => 3, 'msg'=>'取消收藏']);
 		}else{
-			$model = new \Models\egsm\Favorite();
+			$model = new \Models\Favorite();
 			$model->aid = $request->input('aid'); 
 			$model->molds = 1;
 			$model->uid = Auth::user()->id;
@@ -103,13 +103,13 @@ class ApiController extends Controller {
 	}
 
 	public function comments(){
-		$comments = \Models\egsm\Comment::where('uid', Auth::user()->id)->where('isshow', 1)->get();
+		$comments = \Models\Comment::where('uid', Auth::user()->id)->where('isshow', 1)->get();
 		
 		return response()->json($comments);
 	}
 
 	public function favorites(){
-		$favorites = \Models\egsm\Favorite::where('uid', Auth::user()->id)->where('isshow', 1)->get();
+		$favorites = \Models\Favorite::where('uid', Auth::user()->id)->where('isshow', 1)->get();
 		foreach($favorites as $favorite){
 			$favorite->article;
 		}

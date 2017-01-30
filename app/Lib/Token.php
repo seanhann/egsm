@@ -1,6 +1,6 @@
 <?php namespace Lib;
 
-use \Models\egsm\User as User;
+use \Models\User as User;
 use Illuminate\Contracts\Auth\Guard;
 
 class Token{
