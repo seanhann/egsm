@@ -42,7 +42,7 @@ class YgController extends Controller {
 		$chartMap = ['glass','shopping-cart','wrench','home','scale', 'education', 'signal', 'yen', 'cutlery', 'phone', 'object-align-bottom', 'tint', 'plane'];
 		$bgColorMap = ['#fd9d21', '#599eec', '#ff6767', '#4dc6ee', '#ff80c2', '#fed030', '#84d23d'];
 
-		$hotWords = \Models\egsm\HotSearch::take(8)->orderBy('count','desc')->get();
+		$hotWords = \Models\HotSearch::take(8)->orderBy('count','desc')->get();
 		return view('egsm.main', ['data'=>$model,'chartMap'=>$chartMap, 'colorMap'=>$bgColorMap, 'hotSearch'=>$hotWords]);
 	}
 
