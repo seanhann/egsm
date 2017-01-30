@@ -21,7 +21,6 @@ Route::get('search/{keywords?}', 'YgController@search');
 Route::get('content', 'YgController@content');
 Route::post('login', 'YgController@login');
 Route::post('regist', 'YgController@regist');
-Route::get('user', 'YgController@user');
 Route::get('points', 'YgController@points');
 Route::get('info', 'YgController@info');
 Route::post('info', 'YgController@postInfo');
@@ -29,6 +28,12 @@ Route::get('comments', 'YgController@comments');
 Route::get('favorites', 'YgController@favorites');
 Route::post('favorite', 'YgController@postFavorite');
 Route::get('about', 'YgController@about');
+
+Route::group(['prefix' => 'api'], function () {
+	Route::get('user/{token}', 'ApiController@user');
+	Route::get('comments/{token}', 'ApiController@comments');
+	Route::get('favorites/{token}', 'ApiController@favorites');
+});
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

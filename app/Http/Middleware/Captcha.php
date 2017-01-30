@@ -7,8 +7,9 @@ class Captcha{
 
     public function handle($request, Closure $next)
     {
-	$model = \Models\egsm\FailedLogin::find($request->input('username'));
-	if($model && $model->reachMaxium() && (Session::get('captcha') != $request->input('captcha'))){
+	//$model = \Models\egsm\FailedLogin::find($request->input('username'));
+	//if($model && $model->reachMaxium() && (Session::get('captcha') != $request->input('captcha'))){
+	if($request->input('captcha') == '' ||  Session::get('captcha') != $request->input('captcha') ){
 		return response()->json(['code'=>3, 'msg'=>'验证码错误']);	
 	}
 	return $next($request);

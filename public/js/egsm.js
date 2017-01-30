@@ -47,7 +47,7 @@ $(document).ready(function() {
 		if($(".username").length){
 			updateToken();
 			showInfo();
-			getInfo();
+			//getInfo();
 		}
 	}
 
@@ -231,7 +231,7 @@ $(document).ready(function() {
 		}else{
 			$(".favour span").removeClass('glyphicon-heart').addClass('glyphicon-heart-empty');
 		}
-		$.post('favorite', {aid: $(this).attr('value')}, function(data){
+		$.post('/favorite', {aid: $(this).attr('value')}, function(data){
 			if(data){
 				if(data.code == 1){
 					$(".favour span").removeClass('glyphicon-heart-empty').addClass('glyphicon-heart');

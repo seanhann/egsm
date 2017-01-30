@@ -1,12 +1,8 @@
-<?php namespace Models\egsm;
+<?php namespace Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Favorite extends Model {
-
-	protected $connection = 'egsm';
-
-
 	/**
 	 * The database table used by the model.
 	 *
@@ -31,6 +27,6 @@ class Favorite extends Model {
 
 
 	public function article(){
-		return $this->hasOne('\Models\egsm\NewArticle','id','aid');
+		return $this->hasOne('\Models\Article','id','aid');
 	}
 }

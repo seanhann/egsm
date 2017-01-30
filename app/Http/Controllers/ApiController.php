@@ -110,6 +110,9 @@ class ApiController extends Controller {
 
 	public function favorites(){
 		$favorites = \Models\egsm\Favorite::where('uid', Auth::user()->id)->where('isshow', 1)->get();
-		return view('egsm.favorites', ['favorites'=>$favorites]);
+		foreach($favorites as $favorite){
+			$favorite->article;
+		}
+		return response()->json($favorites);
 	}
 }

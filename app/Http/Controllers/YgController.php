@@ -37,7 +37,8 @@ class YgController extends Controller {
 	 */
 	public function index()
 	{
-		$model = \Models\egsm\NewCatalog::all();
+		//$model = \Models\egsm\NewCatalog::all();
+		$model = \Models\Catalog::where('parentid', 5)->get();
 		$chartMap = ['glass','shopping-cart','wrench','home','scale', 'education', 'signal', 'yen', 'cutlery', 'phone', 'object-align-bottom', 'tint', 'plane'];
 		$bgColorMap = ['#fd9d21', '#599eec', '#ff6767', '#4dc6ee', '#ff80c2', '#fed030', '#84d23d'];
 
@@ -163,7 +164,7 @@ class YgController extends Controller {
 			return response()->json(['code' => 0, 'msg'=>'非法输入']);
 		}
 
-		$models = \Models\egsm\Favorite::where('aid', $request->input('aid'))->get();
+		$models = \Models\Favorite::where('aid', $request->input('aid'))->get();
 		if( count($models) > 0 ){
 			foreach($models as $model){
 				if( !$model->delete() ){
@@ -172,12 +173,12 @@ class YgController extends Controller {
 			}
 			return response()->json(['code' => 3, 'msg'=>'取消收藏']);
 		}else{
-			$model = new \Models\egsm\Favorite();
+			$model = new \Models\Favorite();
 			$model->aid = $request->input('aid'); 
 			$model->molds = 1;
 			$model->uid = Auth::user()->id;
 			$model->uname = Auth::user()->username;
-			$model->link = "/egsm/detail/".$request->input('aid');
+			$model->link = "/detail/".$request->input('aid');
 			$model->ip = $request->ip();
 			$model->isshow = 1;
 			if ($model->save() ){
@@ -224,40 +225,38 @@ class YgController extends Controller {
 	}
 
 	public function comments(){
-		$comments = \Models\egsm\Comment::where('uid', Auth::user()->id)->where('isshow', 1)->get();
+		$comments = \Models\Comment::where('uid', Auth::user()->id)->where('isshow', 1)->get();
 		return view('egsm.comments', ['comments'=>$comments]);
 	}
 
 	public function favorites(){
-		$favorites = \Models\egsm\Favorite::where('uid', Auth::user()->id)->where('isshow', 1)->get();
+		$favorites = \Models\Favorite::where('uid', Auth::user()->id)->where('isshow', 1)->get();
 		return view('egsm.favorites', ['favorites'=>$favorites]);
 	}
 
 	public function detail($id)
 	{
-		$model = \Models\egsm\ArticleDetail::where('article_id', $id)->first();
-		$favorited = \Models\egsm\Favorite::where('aid',$id)->first() ? true:false;
+		$model = \Models\Article::find($id);
+		$favorited = \Models\Favorite::where('aid',$id)->first() ? true:false;
 		return view('egsm.detail', ['detail'=>$model, 'favorited'=>$favorited]);
 	}
 
 	public function content(){
-		$models = \Models\egsm\NewCatalog::all();
+		$articles = \Models\Article::paginate(10);
 		$result = array();
-		foreach($models as $model){
-			foreach($model->articles as $item){
-				$result[] = array($item->id, $item->title, $item->pic, $item->detail ? $item->detail->specials : '');
-			}
+		foreach($articles as $item){
+			$result[] = array($item->id, $item->title, $item->picurl, $item->description);
 		}
 		return response()->json($result);
 	}
 
 	private function updateHotSearch($keyWords){
-                $find = \Models\egsm\HotSearch::where('key_words','like', $keyWords)->first();
+                $find = \Models\HotSearch::where('key_words','like', $keyWords)->first();
 
                 if($find){
                         $find->count = $find->count+1;
                 }else{
-                        $find = new \Models\egsm\HotSearch();
+                        $find = new \Models\HotSearch();
 			$find->key_words = $keyWords;
 			$find->count = 1;
                 }
@@ -268,19 +267,19 @@ class YgController extends Controller {
 		$this->updateHotSearch($keyWords);
 
 		$result = array();
-		$catalogs = \Models\egsm\NewCatalog::where('name','like', '%'.$keyWords.'%')->get();
+		$catalogs = \Models\Catalog::where('classname','like', '%'.$keyWords.'%')->get();
 		foreach($catalogs as $catalog){
-			foreach($catalog->all_articles as $article){
+			foreach($catalog->articles as $article){
 				$result[$article->id] = $article;
 			}	
 		}	
 	
-		$articles = \Models\egsm\NewArticle::where('title','like', '%'.$keyWords.'%')->get();
+		$articles = \Models\Article::where('title','like', '%'.$keyWords.'%')->get();
 		foreach($articles as $article){
 			$result[$article->id] = $article;
 		}	
 		
-		$hotWords = \Models\egsm\HotSearch::take(8)->orderBy('count','desc')->get();
+		$hotWords = \Models\HotSearch::take(8)->orderBy('count','desc')->get();
 		
 		return view('egsm.search', ['articles'=>$result,'hotSearch'=>$hotWords,'keyWords'=>$keyWords, 'brand'=>'search-page']);
 	}

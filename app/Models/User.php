@@ -1,4 +1,4 @@
-<?php namespace Models\egsm;
+<?php namespace Models;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -8,10 +8,6 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 	use Authenticatable, CanResetPassword;
-
-	//protected $connection = 'egsm_remote';
-	protected $connection = 'egsm';
-
 
 	/**
 	 * The database table used by the model.

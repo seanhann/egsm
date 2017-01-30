@@ -56,31 +56,8 @@ return [
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
 			'strict'    => false,
-		],
+		]
 
-		'egsm' => [
-			'driver'    => 'mysql',
-			'host'      => env('EG_HOST', 'localhost'),
-			'database'  => env('EG_DATABASE', 'forge'),
-			'username'  => env('EG_USERNAME', 'forge'),
-			'password'  => env('EG_PASSWORD', ''),
-			'charset'   => 'utf8',
-			'collation' => 'utf8_general_ci',
-			'prefix'    => '',
-			'strict'    => false,
-		],
-
-		'egsm_remote' => [
-			'driver'    => 'mysql',
-			'host'      => env('EG_REMOTE_HOST', 'localhost'),
-			'database'  => env('EG_REMOTE_DATABASE', 'forge'),
-			'username'  => env('EG_REMOTE_USERNAME', 'forge'),
-			'password'  => env('EG_REMOTE_PASSWORD', ''),
-			'charset'   => 'utf8',
-			'collation' => 'utf8_general_ci',
-			'prefix'    => '',
-			'strict'    => false,
-		],
 	],
 
 	/*

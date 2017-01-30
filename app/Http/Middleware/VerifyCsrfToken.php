@@ -4,6 +4,9 @@ use Closure;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 
 class VerifyCsrfToken extends BaseVerifier {
+	protected $except_urls = [
+	    'login', 'regist', 'info', 'favorite'
+	];
 
 	/**
 	 * Handle an incoming request.

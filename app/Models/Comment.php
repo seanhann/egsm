@@ -1,12 +1,8 @@
-<?php namespace Models\egsm;
+<?php namespace Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model {
-
-	protected $connection = 'egsm';
-
-
 	/**
 	 * The database table used by the model.
 	 *

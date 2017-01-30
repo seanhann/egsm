@@ -1,6 +1,6 @@
 <?php namespace App\Providers;
 
-use Models\egsm\User;
+use Models\User;
 use App\Auth\EgsmUserProvider;
 use Illuminate\Support\ServiceProvider;
 
