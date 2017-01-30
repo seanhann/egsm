@@ -5,6 +5,9 @@
 	<div class="panel-heading">
 	</div>
 	<ul class="list-group">
+	  <li class="list-group-item" style="text-align:center">
+		<img src="/images/money.jpg" width="50%"/>
+	  </li>
 	  <li class="list-group-item">
 	    <span class="badge">{{ $user->integral}}</span>
 		可用积分:

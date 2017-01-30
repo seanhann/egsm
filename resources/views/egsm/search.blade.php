@@ -7,15 +7,15 @@
 		@if(count($articles) > 0)
 		@foreach($articles as $article)
 		<li class="list-group-item btn">
-		<a href="detail/{{ $article->id }}"> 
+		<a href="/detail/{{ $article->id }}"> 
 		<div class="media">
 			<div class="media-left">
-				<img alt="90x90" class="media-object" data-src="holder.js/90x90" src="http://www.egousm.com/{{ $article->pic }}" data-holder-rendered="true" style="width: 90px; height: 90px; border-radius: 5px;">	
+				<img alt="90x90" class="media-object" data-src="holder.js/90x90" src="http://www.egousm.com/{{ $article->picurl }}" data-holder-rendered="true" style="width: 90px; height: 90px; border-radius: 5px;">	
 			</div> 
 
 			<div class="media-body" style="padding: 5px">
 				<div class="media-heading" style="font-weight: bold; font-size:17px">{{ $article->title }}</div>
-				<p style="font-size: 12px; color:#666">{{ $article->content }}</p> 
+				<p style="font-size: 12px; color:#666">{{ $article->description}}</p> 
 			</div> 
 		</div>
 		</a>

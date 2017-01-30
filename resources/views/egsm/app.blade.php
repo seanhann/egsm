@@ -84,7 +84,7 @@
 		<div class="container-fluid"> 
 			<div class="navbar-header"> 
 				<div class="btn-group btn-group btn-group-justified" role="group" aria-label="Justified button group"> 
-					<a href="/egsm" class="btn" role="button"><span class="glyphicon glyphicon-home"></span><br><span style=" font-size: 10px; ">首页</span></a>
+					<a href="/" class="btn" role="button"><span class="glyphicon glyphicon-home"></span><br><span style=" font-size: 10px; ">首页</span></a>
 					<a href="/near" class="btn" role="button"><span class="glyphicon glyphicon-map-marker"></span><br><span style=" font-size: 10px; ">附近</span></a>
 					<a href="/staff" class="btn" role="button"><span class="glyphicon glyphicon-user"></span><br><span style=" font-size: 10px; ">我的</span></a>
 				</div>

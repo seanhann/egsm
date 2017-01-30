@@ -58,7 +58,7 @@
 					<div class="form-group has-feedback login-captcha">
 					  <div class="input-group">
 					    <span class="input-group-addon">
-						<img src="http://shaiii.com/captcha" class="captcha-img"/>
+						<img src="/captcha" class="captcha-img"/>
 					    <a class="btn refresh">
 						<span class="input-group-addon">
 						<span class="glyphicon glyphicon-repeat"></span>
@@ -102,7 +102,7 @@
 					<div class="form-group has-feedback">
 					  <div class="input-group">
 					    <span class="input-group-addon">
-						<img src="http://shaiii.com/captcha" class="captcha-img"/>
+						<img src="/captcha" class="captcha-img"/>
 					    <a class="btn refresh">
 						<span class="input-group-addon">
 						<span class="glyphicon glyphicon-repeat"></span>
@@ -184,8 +184,8 @@
 	    		<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="navbar-header"> 
 				<div class="btn-group btn-group btn-group-justified" role="group" aria-label="Justified button group"> 
-					<a href="/egsm.html" class="btn" role="button"><span class="glyphicon glyphicon-home"></span><br><span style=" font-size: 10px; ">首页</span></a>
-					<a href="/near.html" class="btn" role="button"><span class="glyphicon glyphicon-map-marker"></span><br><span style=" font-size: 10px; ">附近</span></a>
+					<a href="/" class="btn" role="button"><span class="glyphicon glyphicon-home"></span><br><span style=" font-size: 10px; ">首页</span></a>
+					<a href="/near" class="btn" role="button"><span class="glyphicon glyphicon-map-marker"></span><br><span style=" font-size: 10px; ">附近</span></a>
 					<a href="#" class="btn" role="button" aria-controls="myself" data-target="#myself" aria-expanded="false" data-toggle="collapse"><span class="glyphicon glyphicon-user"></span><br><span style=" font-size: 10px; ">我的</span></a>
 				</div>
 			</div>  

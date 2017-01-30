@@ -1,5 +1,4 @@
 @extends('egsm.secondary', ['keyWords'=>'个人资料'])
-
 @section('list')
 <div class="login">
 		<div class="login-page">
@@ -49,3 +48,4 @@
                                         </form>
 		</div>
 </div> 
+@endsection
