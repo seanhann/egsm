@@ -30,6 +30,8 @@ Route::post('favorite', 'YgController@postFavorite');
 Route::get('about', 'YgController@about');
 
 Route::group(['prefix' => 'api'], function () {
+	Route::get('search/{keyWords}', 'ApiController@search');
+	Route::get('hotSearch', 'ApiController@hotSearch');
 	Route::get('user/{token}', 'ApiController@user');
 	Route::get('comments/{token}', 'ApiController@comments');
 	Route::get('favorites/{token}', 'ApiController@favorites');

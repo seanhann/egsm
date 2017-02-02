@@ -25,12 +25,36 @@ class ApiController extends Controller {
 	 */
 	public function __construct()
 	{
-		$this->middleware('auth.egsm');
+		$this->middleware('auth.egsm', ['except'=>['search','hotSearch']]);
 	}
 
 
 	public function user(){
 		return Auth::user()->toJson();
+	}
+
+	public function hotSearch(){
+		$hotWords = \Models\HotSearch::take(8)->orderBy('count','desc')->get();
+		return response()->json($hotWords);
+	}
+
+	public function search($keyWords){
+		\Models\HotSearch::updateHotSearch($keyWords);
+
+		$result = array();
+		$catalogs = \Models\Catalog::where('classname','like', '%'.$keyWords.'%')->get();
+		foreach($catalogs as $catalog){
+			foreach($catalog->articles as $article){
+				$result[$article->id] = $article;
+			}	
+		}	
+	
+		$articles = \Models\Article::where('title','like', '%'.$keyWords.'%')->get();
+		foreach($articles as $article){
+			$result[$article->id] = $article;
+		}	
+		
+		return response()->json($result);	
 	}
 
 	public function postFavorite(Request $request){

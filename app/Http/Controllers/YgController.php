@@ -250,21 +250,8 @@ class YgController extends Controller {
 		return response()->json($result);
 	}
 
-	private function updateHotSearch($keyWords){
-                $find = \Models\HotSearch::where('key_words','like', $keyWords)->first();
-
-                if($find){
-                        $find->count = $find->count+1;
-                }else{
-                        $find = new \Models\HotSearch();
-			$find->key_words = $keyWords;
-			$find->count = 1;
-                }
-		return $find->save();	
-	}
-
 	public function search($keyWords){
-		$this->updateHotSearch($keyWords);
+		\Models\HotSearch::updateHotSearch($keyWords);
 
 		$result = array();
 		$catalogs = \Models\Catalog::where('classname','like', '%'.$keyWords.'%')->get();
