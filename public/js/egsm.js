@@ -5,7 +5,7 @@ $(document).ready(function() {
 		if(data) localStorage.user = data;
 		showInfo();
 		$('.login').modal('hide');
-
+		window.history.back();
 	}
 
 	function showInfo(){
@@ -45,7 +45,7 @@ $(document).ready(function() {
 
 	function init(){
 		if($(".username").length){
-			updateToken();
+			//updateToken();
 			showInfo();
 			//getInfo();
 		}

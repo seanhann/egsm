@@ -28,6 +28,88 @@ class ApiController extends Controller {
 		$this->middleware('auth.egsm', ['except'=>['search','hotSearch']]);
 	}
 
+	public function login(Request $request){
+		$validator = \Validator::make($request->all(), [
+                        'username' => 'required|integer', 'password' => 'required',
+                ]);
+
+		if ($validator->fails())
+                {
+			return response()->json(['code' => 0, 'msg'=>'非法输入']);
+		}	
+
+                $credentials = $request->only('username', 'password');
+
+                if (Auth::attempt($credentials, 1))
+                {
+			$user = Auth::user();
+			return response()->json(['code' => 1, 'msg'=>$user->toJson()]);
+                }else{
+			return response()->json(['code' => 2, 'msg'=>'用户名或密码错误']);
+		}
+
+	}
+
+	public function regist(Request $request){
+	        if(Session::get('captcha') != $request->input('captcha')){
+        	        return response()->json(['code'=>3, 'msg'=>'验证码错误']);
+        	}
+
+		$verifier = \App::make('validation.presence');
+		
+		$verifier->setConnection('egsm_remote');
+
+		$validator = \Validator::make($request->all(), [
+                        'username' => 'required|integer|unique:pmw_member,username', 
+			'password' => 'required',
+                ]);
+		$validator->setPresenceVerifier($verifier);
+
+		if ($validator->fails())
+                {
+			return response()->json(['code' => 0, 'msg'=>'已存在号码或者非法号码']);
+		}	
+
+		if(
+		   !preg_match("/^(13d{1}|15[03689])[0-9]{8}$/",$request->input('username')) &&
+		   !preg_match("/^((([0-9]{3}))|([0-9]{3}-))?((0[0-9]{2,3})|0[0-9]{2,3}-)?[1-9][0-9]{6,8}$/",$request->input('username'))
+		){
+			return response()->json(['code' => 3, 'msg'=>'手机号格式不对']);
+		}
+
+		$user = new \Models\egsm\User();
+		$user->username = $request->input('username');
+		$user->password = md5(md5($request->input('password')));
+		$user->passwordpay = '';
+		$user->question = '';
+		$user->answer = '';
+		$user->cnname = '';
+		$user->avatar = '';
+		$user->sex = 0;
+		$user->intro = '';
+		$user->email = '';
+		$user->qqnum = '';
+		$user->telephone = '';
+		$user->address = '';
+		$user->inviter = '';
+		$user->agent_user = '';
+		$user->rebatedate = 0;
+		$user->mobile = $request->input('username');
+		$user->enteruser = 0;
+		$user->regtime = time();
+		$user->regip = $request->ip();
+		$user->logintime = time();
+		$user->loginip = $request->ip();
+
+                if ($user->save())
+                {
+			\Auth::login($user, 1);
+			return response()->json(['code' => 1, 'msg'=>$user->toJson()]);
+                }else{
+			return response()->json(['code' => 2, 'msg'=>'网络错误，请重试']);
+		}
+
+	}
 
 	public function user(){
 		return Auth::user()->toJson();

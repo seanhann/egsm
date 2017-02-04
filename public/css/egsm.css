@@ -137,7 +137,7 @@ a{
 .search input{
 	float:left;
 	background-color: rgb(255, 255, 255);
-	border-radius: 18px;
+	/*border-radius: 18px;*/
 	font-size: 10px;
         padding: 2px;
 	height: 25px;
@@ -475,4 +475,59 @@ a{
 
 .navbar-default .favour:hover, .navbar-default .favour:focus{
 	color: white;
+}
+
+.jumbotron {
+    padding-top: 10px;
+    padding-bottom: 15px;
+    margin-bottom: 0px;
+    color: inherit;
+    background-color: #eee;
+}
+
+.footer{
+	font-size: 12px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+
+.footer .btn-default{
+	color: #06c1ae;
+	border-color: #06c1ae;
+	font-size: 12px;
+}
+
+.jumbotron .footer p{
+	font-size: 12px;
+}
+
+.footer a{
+    display: inline-block;
+    width: 20%;
+    text-align: center;
+    color: #06c1ae;
+}
+
+.footer-copyright{
+	text-align: center;
+}
+
+.footer-copyright .hr {
+    content: "";
+    width: 100%;
+    top: 50%;
+    border-top: 1px solid #999;
+    position: relative;
+    margin-top: -9px;
+}
+
+.footer-copyright-text{
+    display: inline-block;
+    background: #eeeeee;
+    z-index: 9;
+    position: relative;
+    color: #666;
+    padding-right: 5px;
+    padding-left: 5px;
 }

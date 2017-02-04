@@ -80,18 +80,15 @@
 
 	@yield('list')
 
-	<nav class="navbar navbar-default navbar-fixed-bottom"> 
-		<div class="container-fluid"> 
-			<div class="navbar-header"> 
-				<div class="btn-group btn-group btn-group-justified" role="group" aria-label="Justified button group"> 
-					<a href="/" class="btn" role="button"><span class="glyphicon glyphicon-home"></span><br><span style=" font-size: 10px; ">首页</span></a>
-					<a href="/near" class="btn" role="button"><span class="glyphicon glyphicon-map-marker"></span><br><span style=" font-size: 10px; ">附近</span></a>
-					<a href="/staff" class="btn" role="button"><span class="glyphicon glyphicon-user"></span><br><span style=" font-size: 10px; ">我的</span></a>
-				</div>
-			</div> 
-		</div> 
-	</nav>
-
-
+	<div class="jumbotron">
+		<div class="footer">
+		<p><a href="/login" class="btn btn-default" role="button">&nbsp;&nbsp;登录&nbsp;&nbsp;</a> <a href="/regist" class="btn btn-default" role="button">&nbsp;&nbsp;注册&nbsp;&nbsp;</a></p>
+		<p><a href="/">首页</a> | <a href="/staff">我的</a> | <a href="/ygsm.apk">易购下载</a> | <a href="/about">关于易购</a></p>
+		<div class="footer-copyright">
+        	    <span class="footer-copyright-text">©2017 易购网 冀ICP备16003228号-1</span>
+        	    <div class="hr"></div>
+        	</div>
+		</div>
+	</div>
   </body>
 </html>

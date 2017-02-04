@@ -19,7 +19,9 @@ Route::get('staff', 'YgController@staff');
 Route::get('detail/{id?}', 'YgController@detail');
 Route::get('search/{keywords?}', 'YgController@search');
 Route::get('content', 'YgController@content');
+Route::get('login', 'YgController@getLogin');
 Route::post('login', 'YgController@login');
+Route::get('regist', 'YgController@getRegist');
 Route::post('regist', 'YgController@regist');
 Route::get('points', 'YgController@points');
 Route::get('info', 'YgController@info');
@@ -30,6 +32,8 @@ Route::post('favorite', 'YgController@postFavorite');
 Route::get('about', 'YgController@about');
 
 Route::group(['prefix' => 'api'], function () {
+	Route::post('login', 'ApiController@login');
+	Route::post('regist', 'ApiController@regist');
 	Route::get('search/{keyWords}', 'ApiController@search');
 	Route::get('hotSearch', 'ApiController@hotSearch');
 	Route::get('user/{token}', 'ApiController@user');

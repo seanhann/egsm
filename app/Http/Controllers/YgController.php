@@ -25,9 +25,9 @@ class YgController extends Controller {
 	 */
 	public function __construct()
 	{
-		$this->middleware('auth.egsm',['only'=>'user']);
+		$this->middleware('auth.egsm',['only'=>['user','info', 'points', 'staff', 'postInfo','comments','postFavorite', 'favorites']]);
 		$this->middleware('nocache',['only'=>'captcha']);
-		$this->middleware('captcha',['only'=>'login', 'regist']);
+		$this->middleware('captcha',['only'=>['login', 'regist']]);
 	}
 
 	/**
@@ -44,6 +44,14 @@ class YgController extends Controller {
 
 		$hotWords = \Models\HotSearch::take(8)->orderBy('count','desc')->get();
 		return view('egsm.main', ['data'=>$model,'chartMap'=>$chartMap, 'colorMap'=>$bgColorMap, 'hotSearch'=>$hotWords]);
+	}
+
+	public function getLogin(){
+		return view('egsm.login');
+	}
+
+	public function getRegist(){
+		return view('egsm.regist');
 	}
 
 	public function near(){
@@ -87,8 +95,6 @@ class YgController extends Controller {
 
 		$verifier = \App::make('validation.presence');
 		
-		$verifier->setConnection('egsm_remote');
-
 		$validator = \Validator::make($request->all(), [
                         'username' => 'required|integer|unique:pmw_member,username', 
 			'password' => 'required',
@@ -107,7 +113,7 @@ class YgController extends Controller {
 			return response()->json(['code' => 3, 'msg'=>'手机号格式不对']);
 		}
 
-		$user = new \Models\egsm\User();
+		$user = new \Models\User();
 		$user->username = $request->input('username');
 		$user->password = md5(md5($request->input('password')));
 		$user->passwordpay = '';

@@ -60,7 +60,7 @@
 		<div class="panel-heading">猜你喜欢</div>
 		<ul class="list-group">
 		</ul>
-		<div class="bottom-loading">上拉加载更多</div>
+		<div class="bottom-loading">点击加载更多</div>
 	</div> 
 </div>
 
@@ -89,12 +89,18 @@ $(function(){
 	}
 	load(page);
 
+	$(".bottom-loading").click(function(){
+		page+=1;
+		load(page);
+	});
+	/*
 	$(window).scroll(function() {
 	    if($(window).scrollTop() >= $(document).height() - $(window).height()) {
 		page+=1;
 		load(page);
 	    }
 	});
+	*/
 });
 </script>
 
