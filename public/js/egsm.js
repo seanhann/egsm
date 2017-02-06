@@ -191,7 +191,7 @@ $(document).ready(function() {
 	});
 
 	$(".search form").submit(function(e){
-		window.location.href = 'search/'+$(this).find("input[name='search']").val();
+		window.location.href = 'search/'+ window.btoa(unescape(encodeURIComponent( $(this).find("input[name='search']").val() )));
 		e.preventDefault();
 	});
 

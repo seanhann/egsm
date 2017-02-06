@@ -257,6 +257,7 @@ class YgController extends Controller {
 	}
 
 	public function search($keyWords){
+		$keyWords = base64_decode($keyWords);
 		\Models\HotSearch::updateHotSearch($keyWords);
 
 		$result = array();
