@@ -27,6 +27,7 @@ class Kernel extends HttpKernel {
 		'auth' => 'App\Http\Middleware\Authenticate',
 		'auth.egsm' => 'App\Http\Middleware\EgsmAuth',
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
+		'auth.attempt.limit' => 'App\Http\Middleware\AttemptLimit',
 		'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
 		'nocache' => 'App\Http\Middleware\NoCache',
 		'captcha' => 'App\Http\Middleware\Captcha',
